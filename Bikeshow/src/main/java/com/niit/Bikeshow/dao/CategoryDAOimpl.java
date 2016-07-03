@@ -11,7 +11,7 @@ import com.niit.Bikeshow.Model.CategoryModel;
 
 @Repository
 public class CategoryDAOimpl implements CategoryDAO {
-	@Autowired(required=true)
+	@Autowired
 	private SessionFactory sessionFactory;
 	    @Transactional
 		public void insertCategoryModel(CategoryModel u)

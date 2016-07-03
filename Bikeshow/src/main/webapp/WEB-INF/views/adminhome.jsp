@@ -12,7 +12,7 @@
 <a href="category">Categories</a><br>
 <a href="suppliers">Suppliers</a><br>
 <a href="Products">Products</a><br>
-
+<a href="viewproduct">View Products List</a><br>
 
 </body>
 </html>

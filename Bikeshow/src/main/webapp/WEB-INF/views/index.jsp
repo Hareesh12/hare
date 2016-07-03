@@ -23,10 +23,10 @@
       <a class="navbar-brand" href="#">SportsBikes</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="home.html">Home</a></li>
-      <li><a href="login.html">LOGIN</a></li>
-      <li><a href="signup">SIGNUP</a></li>
-      <li><a href="customercare.html">CUSTOMER CARE</a></li>
+      <li class="active"><a href="home.html">HOME</a></li>
+      <li ><a href="login.html">LOGIN</a></li>
+      <li ><a href="signup.html">SIGNUP</a></li>
+      <li ><a href="customercare.html">CUSTOMER CARE</a></li>
     </ul>
   </div>
 </nav>

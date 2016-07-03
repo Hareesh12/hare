@@ -1,5 +1,5 @@
-package com.niit.Bikeshow.controller;
 
+package com.niit.Bikeshow.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,16 +7,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.niit.Bikeshow.Model.CategoryModel;
-import com.niit.Bikeshow.Model.SignupModel;
-import com.niit.Bikeshow.Model.SupplierModel;
+import com.google.gson.Gson;
+import com.niit.Bikeshow.Model.*;
+
+import com.niit.Bikeshow.service.CategoryService;
 import com.niit.Bikeshow.service.UserService;
-
-
+import com.niit.Bikeshow.service.SupplierService;
+import com.niit.Bikeshow.service.ProductService;
 @Controller
 public class HomeController {
 	@Autowired
 	UserService us;
+	@Autowired
+	CategoryService cs;
+	@Autowired
+	SupplierService ss;
+	  @Autowired
+		ProductService ps;
 	
 	@RequestMapping("/")
 	public ModelAndView getHomePage() {
@@ -31,14 +38,17 @@ public class HomeController {
 		
 		return new ModelAndView("signup","command",new SignupModel());
 	}
+	
 	@RequestMapping("/addcustomer")
-		public ModelAndView addCustomer(@ModelAttribute("SignupModel") SignupModel sm ) {
-		System.out.println("in add customer");
-            us.insertSignupModel(sm);
-			
-			ModelAndView mv=new ModelAndView("signup","command",new SignupModel());
-			return mv;
-		}
+	public ModelAndView addCustomer(@ModelAttribute("SignupModel") SignupModel sm ) {
+	System.out.println("in add customer");
+        us.insertSignupModel(sm);
+		
+		ModelAndView mv=new ModelAndView("signup","command",new SignupModel());
+		return mv;
+	}
+
+
 
 		
 	@RequestMapping("/login")
@@ -48,6 +58,56 @@ public class HomeController {
 		ModelAndView mv=new ModelAndView("login");
 		return mv;
 	}
+	@RequestMapping("/categories")
+	public ModelAndView categories() {
+
+		
+		ModelAndView mv=new ModelAndView("category","command",new CategoryModel());
+		return mv;
+	}
+	@RequestMapping("/addcategory")
+	public ModelAndView addCategory(@ModelAttribute("CategoryModel") CategoryModel c ) {
+	System.out.println("in add category");
+        cs.insertCategoryModel(c);
+		
+		ModelAndView mv=new ModelAndView("category","command",new CategoryModel());
+		return mv;
+	}
+	@RequestMapping("/suppliers")
+	public ModelAndView suppliers() {
+
+		
+		ModelAndView mv=new ModelAndView("supplier","command",new SupplierModel());
+		return mv;
+	}
+	@RequestMapping("/addsupplier")
+	public ModelAndView addSupplier(@ModelAttribute("SupplierModel") SupplierModel c ) {
+	System.out.println("in add supplier");
+        ss.insertSupplierModel(c);
+		
+		ModelAndView mv=new ModelAndView("supplier","command",new SupplierModel());
+		return mv;
+	}
+	@RequestMapping("/Products")
+	public ModelAndView product() {
+
+		return new ModelAndView("product","command",new ProductModel());
+	}
+	@RequestMapping("/addproduct")
+	public ModelAndView addProduct(@ModelAttribute("ProductModel") ProductModel pm ) {
+	System.out.println("in add product");
+	    ps.insertProductModel(pm);		
+		ModelAndView mv=new ModelAndView("product","command",new ProductModel());
+		return mv;
+	}
+	@RequestMapping("/viewproduct")
+	public ModelAndView viewproducts()
+	{
+		java.util.List<ProductModel> arr=ps.getProductList();
+		Gson gson=new Gson();
+		String Json=gson.toJson(arr);
+		return new ModelAndView("productslist","data",gson.toJson(arr));
+	}
 	@RequestMapping("/customercare")
 	public ModelAndView customercare() {
 
@@ -55,36 +115,12 @@ public class HomeController {
 		ModelAndView mv=new ModelAndView("customercare");
 		return mv;
 	}
-	@RequestMapping("/category")
-	public ModelAndView category() {
+	
+	
+@RequestMapping("/adminhome")
+public ModelAndView adminhome(){
+ModelAndView mv= new ModelAndView("adminhome");
+return mv;
+}
 
-		return new ModelAndView("category","command",new CategoryModel());
-	}
-	@RequestMapping("/addcategory")
-	public ModelAndView addCategory(@ModelAttribute("CategoryModel") CategoryModel cm ) {
-	System.out.println("in add category");
-       //cs.insertCategoryModel(cm);		
-		ModelAndView mv=new ModelAndView("category","command",new CategoryModel());
-		return mv;
-	}
-	@RequestMapping("/supplier")
-	public ModelAndView supplier() {
-
-		return new ModelAndView("supplier","command",new SupplierModel());
-	}
-	@RequestMapping("/addsupplier")
-	public ModelAndView addSupplier(@ModelAttribute("SupplierModel") SupplierModel sm ) {
-	System.out.println("in add supplier");
-       //ss.insertSupplierModel(sm);		
-		ModelAndView mv=new ModelAndView("supplier","command",new SupplierModel());
-		return mv;
-	}
-
-	@RequestMapping("/adminhome")
-	public ModelAndView adminhome() {
-
-		
-		ModelAndView mv=new ModelAndView("adminhome");
-		return mv;
-	}
 }

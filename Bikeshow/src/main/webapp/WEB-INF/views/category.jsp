@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<form:form method="POST" action="">
+<form:form method="POST" action="addcategory">
 <table>
 <tr>
         <td>Category Name :</td>
@@ -20,7 +20,6 @@
      <tr>
         <td>Category price:</td>
            <td><form:input path="categoryprice" /></td>
-        
     </tr>
 
    

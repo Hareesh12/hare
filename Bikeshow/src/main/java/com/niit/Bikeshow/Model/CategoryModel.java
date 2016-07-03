@@ -1,7 +1,6 @@
 package com.niit.Bikeshow.Model;
 
 import javax.persistence.Column;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,7 +8,7 @@ import javax.persistence.Table;
 //import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name="Category")
+@Table(name="Categories")
 public class CategoryModel 
 {
 	@Id
